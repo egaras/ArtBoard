@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <span id="stat">X=10 ,Y=11</span>
+    <section id="paper">
+        <canvas id="canvas" width="700" height="500"></canvas>
+    </section>
+    <section id="toolbar">
+        <span id="move" class="tool shape selected"></span>
+        <span id="free" class="tool shape"></span>
+        <span id="line" class="tool shape"></span>
+        <span id="rect" class="tool shape"></span>
+        <span id="circle" class="tool shape"></span>
+        <span id="erase" class="tool shape"></span>
+        <input id="fillStyle" type="color" class="tool" value="#ffffff">
+        <input id="strokeStyle" type="color" class="tool">
+        <input id="lineWidth" type="range" class="tool" min="1" max="25" value="1">
+        <span id="undo" class="tool"></span>
+        <span id="redo" class="tool"></span>
+        <span id="save" class="tool"></span>
+    </section>
+    <script src="assets/js/jquery-3.1.1.js"></script>
+    <script src="assets/js/artboard.js"></script>
+</body>
+</html>
