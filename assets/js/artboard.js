@@ -22,7 +22,7 @@ var shape = function(type,beginX,beginY,endX,endY,stroke,fill,lineWidth){
 }
 var board = new Array();
 var trash = new Array();
-
+board.push(new shape('rect',0,0,cw,ch,'#ffffff','#ffffff',1));
 function drawBoard(board){
     ctx.clearRect(0,0,cw,ch);
     for(var i in board){
@@ -64,24 +64,13 @@ function drawBoard(board){
                 ctx.stroke();
                 break;
         }
-        /*if(obj.type != 'line' && obj.type != 'free' && obj.type){
-            console.log('this is fill');
-            ctx.fill();
-        }
-        ctx.stroke();*/
     }
 }
 $('#canvas').on('mousedown',function(e){
-    //dx = canvas.getBoundingClientRect().left;
-    //dy = canvas.getBoundingClientRect().top;
-    //dx = e.clientX - canvas.getBoundingClientRect().left;
-    //dy = e.clientY - canvas.getBoundingClientRect().top;
     if(mode == "move"){
         drag = true;
         dx = e.clientX - canvas.getBoundingClientRect().left;
         dy = e.clientY - canvas.getBoundingClientRect().top;
-        //dx = e.clientX - $('#paper').position().left;
-        //dy = e.clientY - $('#paper').position().top;
     }else{
         draw = true;
         dx = $('#paper').position().left;
@@ -91,9 +80,7 @@ $('#canvas').on('mousedown',function(e){
         else
             board.push(new shape(mode,e.clientX,e.clientY,e.clientX,e.clientY,$('#strokeStyle').val(),$('#fillStyle').val(),$('#lineWidth').val()));
     }
-    $('#stat').html("top "+dy+" left "+dx);
 });
-
 $('#canvas').on('mouseup',function(e){
     if(draw)
         draw = false;
@@ -101,7 +88,6 @@ $('#canvas').on('mouseup',function(e){
         drag = false;
     drawBoard(board);
 });
-
 $('#canvas').on('mousemove',function(e){
     if(draw){
         if(mode == "free" || mode == "erase"){
@@ -145,10 +131,9 @@ $('#filled').on('click',function(e){
         $(this).css({'background-position-x':" 0"});
 });
 $('#save').on('click',function(e){
-    var image = canvas.toDataURL("image/png").replace("image/png","image/octet-stream");
-    document.location.href = image;
+    var image = canvas.toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+    $('<a download="ArtBoard.png" href="'+image+'"></a>')[0].click();
 });
-
 
 var dh = ($(window).width()-700)/2;
 var dv = ($(window).height()-500)/2;
