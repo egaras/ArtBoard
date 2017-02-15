@@ -2,20 +2,6 @@ body{
     margin: 0;
     background-color: #666;
 }
-#drag{
-    position: absolute;
-    display: block;
-    top: 0;
-    right: 0;
-    z-index: 2;
-    width: 40px;
-    height: 40px;
-    background: url('../images/icons.png') -280px 0;
-    cursor: move;
-}
-#canvas{
-    position: relative;
-}
 #paper{
     display: block;
     width: 700px;
@@ -28,44 +14,34 @@ body{
     cursor: crosshair;
 }
 #toolbar{
-    width: 700px;
+    width: 600px;
     height: 30px;
-    border: 5px solid #333;
-    background-color: #333;
+    border: 5px solid #222;
+    background-color: #222;
     position: fixed;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 10px;
     margin: auto;
-    -webkit-transition: top 0.5s;
-    border-radius: 25px;
-    box-shadow: 0px -2px 10px;
     text-align: center;
-}
-#toolbar:hover{
-    bottom: 0px;
+    border-radius: 25px;
+    box-shadow: 0px 4px 12px;
+    -webkit-transition: top 0.5s;
 }
 .tool{
-    font-family: sans-serif;
     display: inline-block;
     width: 30px;
     height: 30px;
     cursor: pointer;
     margin: auto 5px;
-    border-radius: 15px;
-    -webkit-transition: background-color 0.25s;
-    -webkit-transition: border 0.25s;
-    -webkit-transition: background-position 0.25s;
+    -webkit-transition: background-position 0.25s ease-in-out;
     background: url('../images/icons.png');
 }
 #lineWidth{
-    width: 50px;
+    width: 60px;
 }
 .tool:hover{
-    filter: drop-shadow( 0 0 5px #F00 );
-}
-.selected{
-    background-position-x: -30px;
+    filter: drop-shadow( 1px 1px 2px #F00 );
 }
 #move{
     background-position: -30px 0;
@@ -99,7 +75,6 @@ body{
 }
 
 input[type="color"] {
-	//-webkit-appearance: none;
 	border: none;
 	width: 30px;
 	height: 30px;
@@ -111,15 +86,4 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 input[type="color"]::-webkit-color-swatch {
 	border: none;
     border-radius: 15px;
-}
-
-#stat{
-    position: fixed;
-    top: 5px;
-    left: 5px;
-    color: #FFF;
-    font-family: monospace;
-    z-index: 5;
-    background-color: #000;
-    padding: 2px;
 }

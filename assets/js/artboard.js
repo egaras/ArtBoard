@@ -186,6 +186,7 @@ $(window).on('keydown',function(e){
             break;
         case 's':
         case 'S':
+            saveDraw();
             break;
     }
 });
