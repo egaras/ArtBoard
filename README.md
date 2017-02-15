@@ -19,6 +19,6 @@
 | Y | Redo |
 | S | Save drawings as png image |
 
-* All shourcuts are case insensitive
+* All shortcuts are case insensitive
 
 ### Demo [ArtBoard](https://ehabgamal.github.io/ArtBoard/)
