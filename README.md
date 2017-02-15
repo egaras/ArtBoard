@@ -1,10 +1,12 @@
 # ArtBoard
-##JavaScript, canvas based, simple painting app
+## JavaScript, canvas based, simple painting app
 
 ![ArtBoard](https://github.com/EhabGamal/ArtBoard/blob/master/assets/images/artboard.png)
 
 ### Keyboard Shortcuts
+
 | Key | Function |
+| ------ | ------ |
 | ↑ OR → | Increase stroke width |
 | ↓ OR ← | Decrease stroke width |
 | F | Free hand drawing |
