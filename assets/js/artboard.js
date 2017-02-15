@@ -47,11 +47,7 @@ function drawBoard(board){
                 break;
             case "circle":
                 ctx.beginPath();
-                var r = 1;
-                if((obj.end[0].x - obj.begin.x) > (obj.end[0].y - obj.begin.y))
-                    r = obj.end[0].x - obj.begin.x;
-                else
-                    r = obj.end[0].y - obj.begin.y;
+                var r = Math.sqrt(Math.pow((obj.end[0].x - obj.begin.x),2)+Math.pow((obj.end[0].y - obj.begin.y),2));;
                 ctx.arc(obj.begin.x-dx,obj.begin.y-dy,Math.abs(r),0,2 * Math.PI);
                 ctx.fill();
                 ctx.stroke();
