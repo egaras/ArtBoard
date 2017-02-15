@@ -103,38 +103,93 @@ $('#canvas').on('mousemove',function(e){
     }
 });
 $('.shape').on('click',function(e){
+    chmode($(this).attr('id'));
+});
+function chmode(newMode){
     $('#'+mode).removeClass('selected');
     $('#'+mode).css('background-position-x','0');
-    $(this).addClass('selected');
-    $(this).css('background-position-x','-30px');
-    mode = $(this).attr('id');
+    $('#'+newMode).addClass('selected');
+    $('#'+newMode).css('background-position-x','-30px');
+    mode = newMode;
     if(mode == "move")
         $("#canvas").css('cursor','default');
-});
-$('#undo').on('click',function(e){
+}
+$('#undo').on('click',undoDraw)
+$('#redo').on('click',redoDraw)
+function undoDraw(){
     if(board.length>0){
         trash.push(board.pop());
         drawBoard(board);
     }
-})
-$('#redo').on('click',function(e){
+}
+function redoDraw(){
     if(trash.length>0){
         board.push(trash.pop());
         drawBoard(board);
     }
-})
-$('#filled').on('click',function(e){
-    filled = !filled;
-    if(filled)
-        $(this).css({'background-position-x':" -40px"});
-    else
-        $(this).css({'background-position-x':" 0"});
-});
-$('#save').on('click',function(e){
+}
+function saveDraw(){
     var image = canvas.toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
     $('<a download="ArtBoard.png" href="'+image+'"></a>')[0].click();
-});
+}
+$('#save').on('click',saveDraw);
 
 var dh = ($(window).width()-700)/2;
 var dv = ($(window).height()-500)/2;
 $('#paper').css({'left':dh, 'top':dv});
+
+$(window).on('keydown',function(e){
+    var val = parseInt($('#lineWidth').val());
+    var max = parseInt($('#lineWidth').attr('max'));
+    switch(e.key){
+        case 'ArrowDown':
+        case 'ArrowLeft':
+            $('#lineWidth').val(val > 1 ? --val : val);
+            break;
+        case 'ArrowUp':
+        case 'ArrowRight':
+            $('#lineWidth').val(val < max ? ++val : val);
+            break;
+        case 'l':
+        case 'L':
+            chmode('line');
+            break;
+        case 'r':
+        case 'R':
+            chmode('rect');
+            break;
+        case 'c':
+        case 'C':
+            chmode('circle');
+            break;
+        case 'f':
+        case 'F':
+            chmode('free');
+            break;
+        case 'd':
+        case 'D':
+            chmode('erase');
+            break;
+        case 'v':
+        case 'V':
+            chmode('move');
+            break;
+        case 'z':
+        case 'Z':
+            undoDraw();
+            break;
+        case 'y':
+        case 'Y':
+            redoDraw();
+            break;
+        case 'x':
+        case 'X':
+            var color = $('#fillStyle').val();
+            $('#fillStyle').val($('#strokeStyle').val());
+            $('#strokeStyle').val(color);
+            break;
+        case 's':
+        case 'S':
+            break;
+    }
+});
